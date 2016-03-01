@@ -1,0 +1,20 @@
+#JSGF V1.0;
+
+grammar command;
+
+public <item> =
+famous |
+luca |
+weast |
+weasels |
+contest |
+faster |
+fatal |
+detox |
+/1e-1/ notebook |
+most |
+location |
+
+/1e-1/ lumos |
+nox;
+

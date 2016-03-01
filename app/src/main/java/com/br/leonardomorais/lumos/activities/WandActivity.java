@@ -17,6 +17,7 @@ import com.br.leonardomorais.lumos.R;
 import com.br.leonardomorais.lumos.features.Flashlight;
 import com.br.leonardomorais.lumos.features.SpellSound;
 import com.br.leonardomorais.lumos.features.listeners.ShakeDeviceDetector;
+import com.br.leonardomorais.lumos.features.listeners.VoiceRecognizer;
 
 /**
  * Created by leonardo on 01/03/16.
@@ -29,11 +30,15 @@ public class WandActivity extends Activity {
     private SharedPreferences appPreferences;
     boolean whilePressedPreference;
     boolean shakeDeviceDetectorPreference;
+    boolean voiceRecognizerPreference;
     boolean firstTimeUse;
+
     /* Features */
     private SpellSound spellSound;
     private Flashlight flashlight;
     private ShakeDeviceDetector shakeDeviceDetector;
+    private VoiceRecognizer voiceRecognizer;
+
     /* UI Components */
     private ImageButton buttonSettings;
     private ImageButton buttonShare;
@@ -150,6 +155,7 @@ public class WandActivity extends Activity {
     private void loadFeatures() {
         whilePressedPreference = appPreferences.getBoolean("whilePressed", false);
         shakeDeviceDetectorPreference = appPreferences.getBoolean("shakeDeviceDetector", true);
+        voiceRecognizerPreference = appPreferences.getBoolean("voiceRecognizer", true);
 
         if(!whilePressedPreference){
             wandOff.setOnTouchListener(null);
@@ -180,10 +186,48 @@ public class WandActivity extends Activity {
             });
             shakeDeviceDetector.starListener();
         }
+
+        if(!voiceRecognizerPreference && voiceRecognizer != null) {
+            voiceRecognizer.endListener();
+            voiceRecognizer = null;
+        }
+
+        if(voiceRecognizerPreference && voiceRecognizer == null){
+            iniciaReconhecedor();
+        }
+    }
+
+    public void iniciaReconhecedor(){
+        voiceRecognizer = new VoiceRecognizer(this);
+        voiceRecognizer.setOnRecognizerListener(new VoiceRecognizer.OnRecognizerListener() {
+            @Override
+            public void onRecognize(String wordRecognized) {
+                if (wordRecognized.equals("lumos")) {
+                    lightWand();
+                } else if (wordRecognized.equals("nox")) {
+                    darkWand();
+                }
+            }
+        });
+        voiceRecognizer.startListener();
     }
 
     @Override
     protected void onActivityResult(int x, int y, Intent z) {
         loadFeatures();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(flashlight != null) {
+            flashlight.release();
+        }
+        if(shakeDeviceDetector != null) {
+            shakeDeviceDetector.endListener();
+        }
+        if(voiceRecognizer != null) {
+            voiceRecognizer.endListener();
+        }
     }
 }
