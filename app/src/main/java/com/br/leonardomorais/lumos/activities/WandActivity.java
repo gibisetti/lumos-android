@@ -14,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.br.leonardomorais.lumos.R;
+import com.br.leonardomorais.lumos.features.SpellSound;
 
 /**
  * Created by leonardo on 01/03/16.
@@ -31,6 +32,7 @@ public class WandActivity extends Activity {
     private ImageView wandOn;
     private FrameLayout wandOff;
     private Animation animation;
+    private SpellSound spellSound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,8 @@ public class WandActivity extends Activity {
 
         wandOff = (FrameLayout) findViewById(R.id.wand_off);
         wandOn = (ImageView) findViewById(R.id.wand_on);
+
+        spellSound = new SpellSound(this);
 
         if(firstTimeUse){
             intent = new Intent(WandActivity.this, TipActivity.class);
@@ -109,11 +113,13 @@ public class WandActivity extends Activity {
 
     public void lightWand(){
         wandImageFadein();
+        spellSound.playSoundOn();
         wandState = true;
     }
 
     public void darkWand(){
         wandImageFadeout();
+        spellSound.playSoundOff();
         wandState = false;
     }
 
