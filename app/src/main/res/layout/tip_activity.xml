@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#c3000000">
+    <TextView
+        android:id="@+id/tip_title"
+        style="@style/ScreenTitle"
+        android:text="@string/tip_title"/>
+
+    <LinearLayout
+        android:id="@+id/tips"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true">
+        <LinearLayout
+            style="@style/TipWrapper">
+            <ImageView
+                style="@style/TipIcon"
+                android:src="@drawable/button_voice" />
+            <TextView
+                style="@style/TipDescription"
+                android:text="@string/tip_voice"/>
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/TipWrapper">
+            <ImageView
+                style="@style/TipIcon"
+                android:src="@drawable/button_shake"/>
+            <TextView
+                style="@style/TipDescription"
+                android:text="@string/tip_shake" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/TipWrapper">
+            <ImageView
+                style="@style/TipIcon"
+                android:src="@drawable/button_touch"/>
+            <TextView
+                style="@style/TipDescription"
+                android:text="@string/tip_touch"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_got_it"
+        style="@style/SimpleButtonBlue"
+        android:text="@string/tip_button" />
+</RelativeLayout>

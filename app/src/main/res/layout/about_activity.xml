@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_blur">
+    <TextView
+        android:id="@+id/about_title"
+        style="@style/ScreenTitle"
+        android:text="@string/about_title"/>
+
+    <TextView
+        android:id="@+id/about_description"
+        android:layout_below="@+id/about_title"
+        style="@style/AboutItemDescription"
+        android:text="@string/about_description"/>
+
+    <TextView
+        android:id="@+id/about_version"
+        android:layout_below="@+id/about_description"
+        style="@style/AboutItemTitle"
+        android:text="@string/about_version"/>
+
+    <TextView
+        android:id="@+id/about_version_value"
+        style="@style/AboutItemDescription"
+        android:layout_below="@+id/about_version"/>
+
+    <TextView
+        android:id="@+id/about_open_source"
+        android:layout_below="@+id/about_version_value"
+        style="@style/AboutItemTitle"
+        android:text="@string/about_open_source"/>
+
+    <TextView
+        android:id="@+id/about_open_source_url"
+        style="@style/AboutItemDescription"
+        android:layout_below="@+id/about_open_source"
+        android:text="@string/about_open_source_url"/>
+
+    <TextView
+        android:id="@+id/about_license"
+        android:layout_below="@+id/about_open_source_url"
+        style="@style/AboutItemTitle"
+        android:text="@string/about_license"/>
+
+    <TextView
+        android:id="@+id/about_license_value"
+        style="@style/AboutItemDescription"
+        android:layout_below="@+id/about_license"
+        android:text="@string/about_license_value"/>
+
+    <Button
+        android:id="@+id/button_back"
+        style="@style/SimpleButtonBlue"
+        android:text="@string/settings_button_back" />
+</RelativeLayout>

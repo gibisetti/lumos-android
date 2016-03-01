@@ -1,3 +1,37 @@
 <resources>
     <string name="app_name">Lumos</string>
+
+    <!-- TIP ACTIVITY -->
+    <string name="tip_title">Ways to use the app</string>
+    <string name="tip_voice">Say \"Lumos\" to turn the light on \n and \"Nox\" to turn it off</string>
+    <string name="tip_shake">Shake the smartphone to turn \n the light on and off</string>
+    <string name="tip_touch">Tap the screen and hold it \n to turn on the light</string>
+    <string name="tip_button">Got it</string>
+
+    <!-- SHARE OPTIONS -->
+    <string name="app_share_title">Share with friends</string>
+    <string name="app_share_message">Look this app called Lumos, it works just like the Harry Potter spell: </string>
+
+    <!-- SETTINGS ACTIVITY -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_option_voice">Voice command</string>
+    <string name="settings_option_shake">Shake the device</string>
+    <string name="settings_option_pressed">Tap and hold to control</string>
+    <string name="settings_button_about">About Lumos</string>
+    <string name="settings_button_back">Back</string>
+
+    <!-- ABOUT ACTIVITY -->
+    <string name="about_title">About Lumos</string>
+    <string name="about_description">Lumos is an app that works like a flashlight allowing the user to control the flash by voice command, shaking the device or touching the screen. \n This app is an open source software and was developed by \n <u>Leonardo Cesar Morais</u>.</string>
+    <string name="about_version">Version</string>
+    <string name="about_open_source">Open Source</string>
+    <string name="about_open_source_url"><u>https://github.com/leouo/lumos</u></string>
+    <string name="about_license">License</string>
+    <string name="about_license_value"><u>GPL v2</u></string>
+
+    <!-- ERRORS -->
+    <string name="error_flash">Your device has no flash!</string>
+    <string name="error_camera">Error opening the camera!</string>
+    <string name="error_start_recognizer">Error opening the voice recognizer!</string>
+    <string name="error_while_recognizing">Error recognize voice!</string>
 </resources>
