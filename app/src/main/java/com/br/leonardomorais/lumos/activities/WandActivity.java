@@ -1,5 +1,6 @@
 package com.br.leonardomorais.lumos.activities;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -19,9 +20,13 @@ import com.br.leonardomorais.lumos.features.SpellSound;
 import com.br.leonardomorais.lumos.features.listeners.ShakeDeviceDetector;
 import com.br.leonardomorais.lumos.features.listeners.VoiceRecognizer;
 
+import permissions.dispatcher.NeedsPermission;
+import permissions.dispatcher.RuntimePermissions;
+
 /**
  * Created by leonardo on 01/03/16.
  */
+@RuntimePermissions
 public class WandActivity extends Activity {
 
     public static boolean wandState = false;
@@ -78,6 +83,12 @@ public class WandActivity extends Activity {
         }
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        WandActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults);
+    }
+
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -102,10 +113,10 @@ public class WandActivity extends Activity {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.wand_on:
-                    darkWand();
+                    WandActivityPermissionsDispatcher.darkWandWithCheck(WandActivity.this);
                     break;
                 case R.id.wand_off:
-                    lightWand();
+                    WandActivityPermissionsDispatcher.lightWandWithCheck(WandActivity.this);
                     break;
             }
         }
@@ -116,16 +127,17 @@ public class WandActivity extends Activity {
         public boolean onTouch(View v, MotionEvent event) {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
-                    lightWand();
+                    WandActivityPermissionsDispatcher.lightWandWithCheck(WandActivity.this);
                     break;
                 case MotionEvent.ACTION_UP:
-                    darkWand();
+                    WandActivityPermissionsDispatcher.darkWandWithCheck(WandActivity.this);
                     break;
             }
             return false;
         }
     };
 
+    @NeedsPermission(Manifest.permission.CAMERA)
     public void lightWand(){
         wandImageFadein();
         spellSound.playSoundOn();
@@ -133,6 +145,7 @@ public class WandActivity extends Activity {
         wandState = true;
     }
 
+    @NeedsPermission(Manifest.permission.CAMERA)
     public void darkWand(){
         wandImageFadeout();
         spellSound.playSoundOff();
@@ -178,9 +191,9 @@ public class WandActivity extends Activity {
                 @Override
                 public void onShake() {
                     if (wandState) {
-                        darkWand();
+                        WandActivityPermissionsDispatcher.darkWandWithCheck(WandActivity.this);
                     } else {
-                        lightWand();
+                        WandActivityPermissionsDispatcher.lightWandWithCheck(WandActivity.this);
                     }
                 }
             });
@@ -193,19 +206,20 @@ public class WandActivity extends Activity {
         }
 
         if(voiceRecognizerPreference && voiceRecognizer == null){
-            iniciaReconhecedor();
+            WandActivityPermissionsDispatcher.initializeReconhecedorWithCheck(WandActivity.this);
         }
     }
 
-    public void iniciaReconhecedor(){
+    @NeedsPermission({Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO })
+    public void initializeReconhecedor(){
         voiceRecognizer = new VoiceRecognizer(this);
         voiceRecognizer.setOnRecognizerListener(new VoiceRecognizer.OnRecognizerListener() {
             @Override
             public void onRecognize(String wordRecognized) {
                 if (wordRecognized.equals("lumos")) {
-                    lightWand();
+                    WandActivityPermissionsDispatcher.lightWandWithCheck(WandActivity.this);
                 } else if (wordRecognized.equals("nox")) {
-                    darkWand();
+                    WandActivityPermissionsDispatcher.darkWandWithCheck(WandActivity.this);
                 }
             }
         });
