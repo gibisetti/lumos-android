@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import com.br.leonardomorais.lumos.R;
 import com.br.leonardomorais.lumos.features.Flashlight;
 import com.br.leonardomorais.lumos.features.SpellSound;
+import com.br.leonardomorais.lumos.features.listeners.ShakeDeviceDetector;
 
 /**
  * Created by leonardo on 01/03/16.
@@ -24,17 +25,23 @@ public class WandActivity extends Activity {
 
     public static boolean wandState = false;
 
+    /* Preferences */
     private SharedPreferences appPreferences;
     boolean whilePressedPreference;
+    boolean shakeDeviceDetectorPreference;
     boolean firstTimeUse;
-    private Intent intent;
+    /* Features */
+    private SpellSound spellSound;
+    private Flashlight flashlight;
+    private ShakeDeviceDetector shakeDeviceDetector;
+    /* UI Components */
     private ImageButton buttonSettings;
     private ImageButton buttonShare;
     private ImageView wandOn;
     private FrameLayout wandOff;
     private Animation animation;
-    private SpellSound spellSound;
-    private Flashlight flashlight;
+
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -142,6 +149,7 @@ public class WandActivity extends Activity {
 
     private void loadFeatures() {
         whilePressedPreference = appPreferences.getBoolean("whilePressed", false);
+        shakeDeviceDetectorPreference = appPreferences.getBoolean("shakeDeviceDetector", true);
 
         if(!whilePressedPreference){
             wandOff.setOnTouchListener(null);
@@ -151,6 +159,26 @@ public class WandActivity extends Activity {
             wandOff.setOnTouchListener(wandTouchListener);
             wandOff.setOnClickListener(null);
             wandOn.setOnClickListener(null);
+        }
+
+        if(!shakeDeviceDetectorPreference && shakeDeviceDetector != null){
+            shakeDeviceDetector.endListener();
+            shakeDeviceDetector = null;
+        }
+
+        if(shakeDeviceDetectorPreference && shakeDeviceDetector == null) {
+            shakeDeviceDetector = new ShakeDeviceDetector(this);
+            shakeDeviceDetector.setOnShakeListener(new ShakeDeviceDetector.OnShakeListener() {
+                @Override
+                public void onShake() {
+                    if (wandState) {
+                        darkWand();
+                    } else {
+                        lightWand();
+                    }
+                }
+            });
+            shakeDeviceDetector.starListener();
         }
     }
 
