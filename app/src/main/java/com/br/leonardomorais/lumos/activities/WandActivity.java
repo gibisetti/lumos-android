@@ -14,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.br.leonardomorais.lumos.R;
+import com.br.leonardomorais.lumos.features.Flashlight;
 import com.br.leonardomorais.lumos.features.SpellSound;
 
 /**
@@ -33,6 +34,7 @@ public class WandActivity extends Activity {
     private FrameLayout wandOff;
     private Animation animation;
     private SpellSound spellSound;
+    private Flashlight flashlight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,7 @@ public class WandActivity extends Activity {
         wandOn = (ImageView) findViewById(R.id.wand_on);
 
         spellSound = new SpellSound(this);
+        flashlight = new Flashlight(this);
 
         if(firstTimeUse){
             intent = new Intent(WandActivity.this, TipActivity.class);
@@ -114,12 +117,14 @@ public class WandActivity extends Activity {
     public void lightWand(){
         wandImageFadein();
         spellSound.playSoundOn();
+        flashlight.turnOn();
         wandState = true;
     }
 
     public void darkWand(){
         wandImageFadeout();
         spellSound.playSoundOff();
+        flashlight.turnOff();
         wandState = false;
     }
 
