@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">Lumos</string>
+
+    <!-- TIP ACTIVITY -->
+    <string name="tip_title">Dicas de Uso</string>
+    <string name="tip_voice">Diga \"Lumos\" para ligar e \n \"Nox\" para desligar a lanterna</string>
+    <string name="tip_shake">Balance o celular para \n ligar e desligar</string>
+    <string name="tip_touch">Toque ou pressione a tela \n para ligar ou desligar</string>
+    <string name="tip_button">Entendi</string>
+
+    <!-- SHARE OPTIONS -->
+    <string name="app_share_title">Compartilhar com os amigos</string>
+    <string name="app_share_message">Veja esse aplicativo de lanterna chamado Lumos, ele funciona igual ao feitiço do Harry Potter: </string>
+
+    <!-- SETTINGS ACTIVITY -->
+    <string name="settings_title">Modos de ativação</string>
+    <string name="settings_option_voice">Comando por voz</string>
+    <string name="settings_option_shake">Balançar o dispositivo</string>
+    <string name="settings_option_pressed">Enquanto a tela for pressionada</string>
+    <string name="settings_button_about">Sobre o app Lumos</string>
+    <string name="settings_button_back">Voltar</string>
+
+    <!-- ABOUT ACTIVITY -->
+    <string name="about_title">Sobre o Lumos</string>
+    <string name="about_description">O Lumos é uma lanterna que permite o usuário controlar o flash da câmera de seu dispositivo por meio do toque na tela, sensor de balanço e comando de voz.
+\n Este aplicativo possui código aberto e foi desenvolvido por \n <u>Leonardo Cesar Morais</u>.</string>
+    <string name="about_version">Versão</string>
+    <string name="about_open_source">Código Aberto</string>
+    <string name="about_open_source_url"><u>https://github.com/leouo/lumos</u></string>
+    <string name="about_license">Licença</string>
+    <string name="about_license_value"><u>GPL v2</u></string>
+
+    <!-- ERRORS -->
+    <string name="error_flash">Seu dispositivo não tem Flash!</string>
+    <string name="error_camera">Erro ao abrir a câmera!</string>
+    <string name="error_start_recognizer">Erro ao iniciar o reconhecimento de voz!</string>
+    <string name="error_while_recognizing">Erro ao reconhecer voz!</string>
+</resources>
