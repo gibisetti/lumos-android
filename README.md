@@ -1,5 +1,5 @@
 # Lumos!
-Lumos is a flashlight app that works like the Harry Potter spell
+Lumos is a flashlight app that works like the Harry Potter spell.
 
 With Lumos user can cast the spell by saying "Lumos" to turn the flashlight on and "Nox" to turn it off and more.
 
@@ -13,7 +13,7 @@ Available on the [Play Store](https://play.google.com/store/apps/details?id=com.
 - Share with friends
 
 
-###Open source libraries
+###Open source libraries used
 - [PermissionsDispatcher](https://github.com/hotchemi/PermissionsDispatcher)
 - [Pocketsphinx for Android](https://github.com/cmusphinx/pocketsphinx-android)
 
