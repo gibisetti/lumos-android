@@ -19,7 +19,7 @@ Available on the [Play Store](https://play.google.com/store/apps/details?id=com.
 
 
 ###Developed By
-Leonardo Cesar Morais - contato@leonardomorais.com.br
+Leonardo Cesar Morais - leonardoccpmorais@gmail.com
 
 
 ###License
